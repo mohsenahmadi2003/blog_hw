@@ -70,6 +70,7 @@ cover/
 .sqlite3
 # Translations
 *.mo
+.gitignore
 
 # Django stuff:
 

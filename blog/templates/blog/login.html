@@ -1,0 +1,115 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+/* Add styles for the body */
+body {
+  background-color: #f1f1f1;
+  font-family: Arial, sans-serif;
+}
+
+/* Add styles for the login form */
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ccc;
+}
+
+/* Add styles for the login form heading */
+.login-form h2 {
+  color: #444;
+  font-size: 32px;
+  text-align: center;
+  margin-top: 0;
+}
+
+/* Add styles for the login form fields */
+.login-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Add styles for the login form button */
+.login-form button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 24px;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+/* Add styles for the "Go back to home" button */
+.home-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 24px;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+.home-button:hover {
+  background-color: #0069d9;
+  text-decoration: none;
+}
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+
+      <div class="login-form">
+        <h2>Login</h2>
+
+        {% if request.user.is_authenticated %}
+          <h1>{{ request.user.username }}, you have entered.</h1>
+          <a href="/" class="home-button">Go back to home</a>
+        {% else %}
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+          </form>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
